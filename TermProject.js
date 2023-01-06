@@ -83,7 +83,11 @@ const savegame = () => {
           Purpose: initialize the game  
 */
 function initialize() {
-  parse = JSON.parse(localStorage.getItem("sGame"));
+  if( localStorage.getItem("sGame") )
+      parse = JSON.parse(localStorage.getItem("sGame"));
+  else{
+       savegame()
+  }
   let gOver = getCookie();
   let promptS = `Game in progress:\n Do you want to continue playing it? \n
   'y' = continues with game. (Default - hit 'Enter key' or 'OK') \n

@@ -90,13 +90,8 @@ function initialize() {
   any other key = starts a new game, or \n
   Cancel = starts a new game.`;
 
-  // if turnno of sGame in local storage in range from 1 -> 9  & game status (from Cookies) is not over
-  // then ask for restoring or starting new game
-
-  // NOTE: For Chrome, Cookies won't work (gOver === "false" in this case) if a broswer doesn't open concurrently with a live editor. 
-  // backup solution if the game won't ask about restoring: 
-  // replace: gOver === "false" to parse.gover === "n"
-  if (gOver === "false" && parse.turnno > 0 && parse.turnno < 10) {
+  
+  if (parse.gover === "n" && parse.turnno > 0 && parse.turnno < 10) {
     let input = prompt(promptS, "y");
     if (input !== "y") {
       newgame();

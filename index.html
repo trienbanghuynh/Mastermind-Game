@@ -1,0 +1,175 @@
+<!--
+Purpose   : Plays Mastermind 
+Developer : Trien Bang Huynh
+Due date   : 12/06/2022
+
+
+-->
+<HTML>
+
+<HEAD>
+  <TITLE>
+    Term Project - Plays Mastermind
+  </TITLE>
+
+<BODY onload="initialize();" onunload="">
+  <FORM name="myForm">
+    <style>
+      .button {
+        color: black;
+        padding: 5px 5px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        font-family: "Courier New";
+        font-size: 120%;
+        font-weight: bold;
+        border-style: solid;
+        border-width: 2px;
+        border-color: black;
+      }
+
+      h1 {
+        text-align: center;
+      }
+    </style>
+    <H1>Term Project - Mastermind (Author Trien Bang Huynh)</H1>
+    <FONT face="courier new" size="12">
+      <B>
+        <table align=center id="big" border="1">
+          <tr>
+            <td>
+              <table align=center id="colors" border="1">
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;
+                    ================= Instructions ===============<BR>
+                    &nbsp;&nbsp;&nbsp;
+                    Click on one of Six Colors to select, then click on<BR>
+                    &nbsp;&nbsp;&nbsp;
+                    Answer Box to set, and Click "Check Answer" button.<BR>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="selectedcolor('Blue');" id="Blue" value="B" src="images/BlueRectangle.GIF"
+                      name="ColorBlue" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="selectedcolor('White');" id="White" value="W" src="images/WhiteRectangle.GIF"
+                      name="ColorWhite" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="selectedcolor('Red');" id="Red" value="R" src="images/RedRectangle.GIF"
+                      name="ColorRed" /><BR>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="selectedcolor('Purple');" id="Purple" value="P" src="images/PurpleRectangle.GIF"
+                      name="ColorPurple" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="selectedcolor('Green');" id="Green" value="G" src="images/GreenRectangle.GIF"
+                      name="ColorGreen" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="selectedcolor('Yellow');" id="Yellow" value="Y" src="images/YellowRectangle.GIF"
+                      name="ColorYellow" />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;
+                    =============== Answer Boxes ===============
+                    <BR>&nbsp;&nbsp;
+                    <img alt="" onClick="pastecolor('1');" id="1" value="" 
+                    src="QuestionRectangle.GIF" name="Ans1"
+                      id="Ans1" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="pastecolor('2');" id="2" value="" 
+                    src="QuestionRectangle.GIF" name="Ans2"
+                      id="Ans2" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="pastecolor('3');" id="3" value="" 
+                    src="QuestionRectangle.GIF" name="Ans3"
+                      id="Ans3" />&nbsp;&nbsp;&nbsp;
+                    <img alt="" onClick="pastecolor('4');" id="4" value="" 
+                    src="QuestionRectangle.GIF" name="Ans4"
+                      id="Ans4" />&nbsp;&nbsp;&nbsp;
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <INPUT type="button" class="button" style="background-color:Gray;color:white"
+                      onClick="checkanswer();" name="check" value="Check Answer">
+                    &nbsp;&nbsp;&nbsp;
+                     <!-- ---------------------------------- -->
+                    <INPUT type="button" class="button" style="background-color:Gray;color:white" onClick="showhelp();"
+                      name="myhelp" id="help" value="Help">
+                    &nbsp;&nbsp;&nbsp;
+                     <!-- ---------------------------------- -->
+                    <INPUT type="button" class="button" style="background-color:Gray;color:white" onClick="newgame();"
+                      name="reset" value="Restart Game">
+                    &nbsp;
+                    &nbsp;&nbsp;&nbsp;
+
+                  </td>
+                </tr>
+              </table>
+            </td>
+            <td>
+              <table align=center id="results" border="1">
+                <tr>
+                  <th align=center><b>Guesses:</b></th>
+                  <th align=center><b>Clues:</b></th>
+                </tr>
+                <tr>
+                  <td>1&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data1 id="Guess1"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue1" name=Clue1 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>2&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data2 id="Guess2"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue2" name=Clue2 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>3&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data3 id="Guess3"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue3" name=Clue3 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>4&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data4 id="Guess4"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue4" name=Clue4 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>5&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data5 id="Guess5"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue5" name=Clue5 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>6&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data6 id="Guess6"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue6" name=Clue6 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>7&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data7 id="Guess7"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue7" name=Clue7 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>8&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data8 id="Guess8"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue8" name=Clue8 readonly="readonly"></td>
+                </tr>
+                <tr>
+                  <td>9&nbsp;&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data9 id="Guess9"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue9" name=Clue9 readonly="readonly"></td>
+                <tr>
+                  <td>10&nbsp;<input style="font-family:'Courier New';" type=text size=10 name=Data10 id="Guess10"
+                      readonly="readonly"></td>
+                  <td><input type=text size=10 id="Clue10" name=Clue10 readonly="readonly"></td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td><B><input type=text size=80 id="sInfo" value="Ready to play..." name=sInfo readonly="readonly"></B></td>
+          </tr>
+        </table>
+      </B>
+    </FONT>
+  </FORM>
+  <SCRIPT src="json_data.js"></SCRIPT>
+  <SCRIPT src="TermProject.js"></SCRIPT>
+</BODY>
+
+</HTML>

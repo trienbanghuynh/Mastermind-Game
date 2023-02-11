@@ -1,7 +1,10 @@
 ### Mastermind-Game
-Demo: https://incredible-queijadas-3b7543.netlify.app 
+### Rules:
+``` bash 
+After opening the game, clink on "Help" to view the rule.
+```
 
-Note: 
+### Usage & Notes:
 ``` bash 
 The game will use localstorage in your browser to keep track, store and display results.
 If it is the first time you run the game in your browser, 
